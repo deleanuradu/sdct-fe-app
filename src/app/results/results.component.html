@@ -1,0 +1,14 @@
+<div class="p-4">
+  <div class="container">
+    <h1>Survey Results</h1>
+
+    <div *ngIf="(sysAnalystScore + softwareDevScore + webMultimediaScore + appProgrammerScore > 0); else noScores">
+      Welcome back, friend.
+    </div>
+
+    <ng-template #noScores>
+      <p>Unfortunately there are no results available yet. Make sure to complete at least one of the questions sets on the survey page.</p>
+      <a routerLink="../survey" class="btn btn-xl btn-primary mb-2">Take me to the survey</a>
+    </ng-template>
+  </div>
+</div>

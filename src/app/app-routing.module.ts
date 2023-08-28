@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home';
 import { AuthGuard } from './_helpers';
+import { ResultsComponent } from "@app/results/results.component";
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
@@ -11,6 +12,7 @@ const surveyModule = () => import('./survey/survey.module').then(x => x.SurveyMo
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'results', component: ResultsComponent, canActivate: [AuthGuard] },
     // { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule },
     { path: 'survey', loadChildren: surveyModule, canActivate: [AuthGuard]  },

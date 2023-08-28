@@ -15,10 +15,15 @@ export class ResultsComponent implements OnInit {
   webMultimediaScore: number = 0;
   appProgrammerScore: number = 0;
 
-  max1 = this.surveyService.sysAnalystMap.length;
-  max2 = this.surveyService.softwareDevMap.length;
-  max3 = this.surveyService.webAndMultimediaMap.length;
-  max4 = this.surveyService.appProgrammerMap.length;
+  min1 = this.surveyService.sysAnalystMap.length;
+  min2 = this.surveyService.softwareDevMap.length;
+  min3 = this.surveyService.webAndMultimediaMap.length;
+  min4 = this.surveyService.appProgrammerMap.length;
+
+  max1 = this.min1 * 5;
+  max2 = this.min2 * 5;
+  max3 = this.min3 * 5;
+  max4 = this.min4 * 5;
 
   ngOnInit(): void {
   }

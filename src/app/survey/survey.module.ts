@@ -12,12 +12,16 @@ import {
 import {
   WebMultimediaQuestionsPageComponent
 } from "@app/survey/web-multimedia-questions-page/web-multimedia-questions-page.component";
+import {
+  ApplicationProgrammerQuestionsPageComponent
+} from "@app/survey/application-programmer-questions-page/application-programmer-questions-page.component";
 
 @NgModule({
   declarations: [
     SysAnalystQuestionsPageComponent,
     SoftwareDevQuestionsPageComponent,
     WebMultimediaQuestionsPageComponent,
+    ApplicationProgrammerQuestionsPageComponent,
     SubmitPageComponent,
     LayoutComponent,
     StartSurveyPageComponent

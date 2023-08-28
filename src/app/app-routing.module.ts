@@ -11,7 +11,7 @@ const surveyModule = () => import('./survey/survey.module').then(x => x.SurveyMo
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
+    // { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule },
     { path: 'survey', loadChildren: surveyModule, canActivate: [AuthGuard]  },
     { path: 'about', loadChildren: aboutModule, canActivate: [AuthGuard]  },

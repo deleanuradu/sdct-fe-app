@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Component({
   selector: 'app-start-survey-page',
@@ -12,4 +13,5 @@ export class StartSurveyPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  protected readonly DevTypesEnum = DevTypesEnum;
 }

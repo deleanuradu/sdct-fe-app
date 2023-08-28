@@ -6,10 +6,18 @@ import { SubmitPageComponent } from './submit-page/submit-page.component';
 import { LayoutComponent } from "@app/survey/layout.component";
 import { StartSurveyPageComponent } from './start-survey-page/start-survey-page.component';
 import { FormsModule } from "@angular/forms";
+import {
+  SoftwareDevQuestionsPageComponent
+} from "@app/survey/software-dev-questiuons-page/software-dev-questions-page.component";
+import {
+  WebMultimediaQuestionsPageComponent
+} from "@app/survey/web-multimedia-questions-page/web-multimedia-questions-page.component";
 
 @NgModule({
   declarations: [
     SysAnalystQuestionsPageComponent,
+    SoftwareDevQuestionsPageComponent,
+    WebMultimediaQuestionsPageComponent,
     SubmitPageComponent,
     LayoutComponent,
     StartSurveyPageComponent

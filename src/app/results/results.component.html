@@ -3,7 +3,7 @@
     <h1>Survey Results</h1>
 
     <div *ngIf="(sysAnalystScore + softwareDevScore + webMultimediaScore + appProgrammerScore > 0); else noScores">
-      Welcome back, friend.
+      Welcome back! Here are your results!
     </div>
 
     <ng-template #noScores>

@@ -30,4 +30,14 @@
   </div>
 </div>
 
-<a (click)="submitQuestionSet()" routerLink="../{{DevTypesEnum.webMultimedia}}" class="btn btn-xl btn-success mb-2">Submit question set</a>
+<div class="d-flex flex-row justify-content-between">
+  <a (click)="submitQuestionSet()" routerLink="../{{DevTypesEnum.sysAnalyst}}"
+     class="btn btn-xl btn-primary">
+    Go to previous set ⬅️
+  </a>
+
+  <a (click)="submitQuestionSet()" routerLink="../{{DevTypesEnum.webMultimedia}}"
+     class="btn btn-xl btn-success btn-margin-left">
+    Submit question set ✅
+  </a>
+</div>

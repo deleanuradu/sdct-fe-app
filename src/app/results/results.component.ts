@@ -31,7 +31,7 @@ export class ResultsComponent implements OnInit {
   max4 = this.min4 * 5;
 
   public radarChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
+    responsive: true
   };
   public radarChartLabels: string[] = [
     'System Analyst',
@@ -54,8 +54,13 @@ export class ResultsComponent implements OnInit {
 
   public initCharts(): void {
     this.radarChartData = {
-      labels: this.radarChartLabels, datasets: [{
-        data: [this.results.sysAnalyst, this.results.softwareDev, this.results.webMultimedia, this.results.appProgrammer,],
+      labels: this.radarChartLabels,
+      datasets: [{
+        data: [
+          this.results.sysAnalyst,
+          this.results.softwareDev,
+          this.results.webMultimedia,
+          this.results.appProgrammer,],
         label: 'Your results'
       },],
     };

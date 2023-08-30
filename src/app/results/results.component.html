@@ -3,28 +3,28 @@
     <h1>Survey Results</h1>
 
     <div *ngIf="(sysAnalystScore + softwareDevScore + webMultimediaScore + appProgrammerScore > 0); else noScores">
-      <p>Welcome back! Here are your results!</p>
+      <p>Welcome back! Here are your results:</p>
 
       <div class="card mb-3">
-        <h5 class="p-2">System Analyst competency: {{results.sysAnalyst}}%</h5>
+        <h5 class="p-2 pb-0">✅ System Analyst competency: {{results.sysAnalyst}}%</h5>
       </div>
 
       <div class="card mb-3">
-        <h5 class="p-2">Software Developer competency: {{results.softwareDev}}%</h5>
+        <h5 class="p-2 pb-0">✅ Software Developer competency: {{results.softwareDev}}%</h5>
       </div>
 
       <div class="card mb-3">
-        <h5 class="p-2">Web and Multimedia Developer competency: {{results.webMultimedia}}%</h5>
+        <h5 class="p-2 pb-0">✅ Web and Multimedia Developer competency: {{results.webMultimedia}}%</h5>
       </div>
 
       <div class="card mb-3">
-        <h5 class="p-2">Application Developer competency: {{results.sysAnalyst}}%</h5>
+        <h5 class="p-2 pb-0">✅ Application Developer competency: {{results.appProgrammer}}%</h5>
       </div>
     </div>
 
     <ng-template #noScores>
-      <p>Unfortunately there are no results available yet. Make sure to complete at least one of the questions sets on the survey page.</p>
-      <a routerLink="../survey" class="btn btn-xl btn-primary mb-2">Take me to the survey</a>
+      <p>Unfortunately there are no results available yet. Make sure to complete all of the question sets on the survey page to generate the results.</p>
+      <a routerLink="../survey" class="btn btn-xl btn-primary mb-2">Take me to the survey 📄</a>
     </ng-template>
   </div>
 </div>

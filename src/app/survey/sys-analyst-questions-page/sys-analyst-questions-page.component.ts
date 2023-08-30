@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SYSTEM_ANALYST_QUESTIONS } from "@app/survey/mocks";
 import { SurveyService } from "@app/survey/survey.service";
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
@@ -9,12 +8,11 @@ import { DevTypesEnum } from "@app/survey/dev-types.enum";
   styleUrls: ['./sys-analyst-questions-page.component.less']
 })
 export class SysAnalystQuestionsPageComponent implements OnInit {
+  sysAnalystMap = this.surveyService.sysAnalystMap;
+  protected readonly DevTypesEnum = DevTypesEnum;
 
   constructor(private surveyService: SurveyService) {
   }
-
-  SYSTEM_ANALYST_QUESTIONS = SYSTEM_ANALYST_QUESTIONS;
-  sysAnalystMap = this.surveyService.sysAnalystMap;
 
   ngOnInit(): void {
   }
@@ -22,6 +20,4 @@ export class SysAnalystQuestionsPageComponent implements OnInit {
   submitQuestionSet(): void {
     this.surveyService.updateResult(DevTypesEnum.sysAnalyst);
   }
-
-  protected readonly DevTypesEnum = DevTypesEnum;
 }

@@ -1,7 +1,7 @@
 <h2 class="mb-5">Set 3/4 - Web and Multimedia Developer</h2>
 <div class="mb-5" *ngFor="let elem of webAndMultimediaMap, let i = index">
-  <p class="mb-2">{{elem.question}}</p>
-  <div class="ml-2">
+  <p class="mb-2">{{elem?.question}}</p>
+  <div class="ml-2"  *ngIf="elem && elem.value">
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions{{i}}"
              id="inlineRadio1" [value]="1" [(ngModel)]="webAndMultimediaMap[i].value" checked>

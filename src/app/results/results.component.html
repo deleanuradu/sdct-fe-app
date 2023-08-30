@@ -20,6 +20,16 @@
       <div class="card mb-3">
         <h5 class="p-2 pb-0">✅ Application Developer competency: {{results.appProgrammer}}%</h5>
       </div>
+
+
+      <canvas
+        baseChart
+        class="chart"
+        [data]="radarChartData"
+        [options]="radarChartOptions"
+        [type]="radarChartType"
+      >
+      </canvas>
     </div>
 
     <ng-template #noScores>

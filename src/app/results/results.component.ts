@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from "@app/survey/survey.service";
+import { reportUnhandledError } from "rxjs/internal/util/reportUnhandledError";
 
 @Component({
   selector: 'app-results', templateUrl: './results.component.html', styleUrls: ['./results.component.less']
@@ -7,7 +8,15 @@ import { SurveyService } from "@app/survey/survey.service";
 export class ResultsComponent implements OnInit {
 
   constructor(private surveyService: SurveyService) {
-    this.getAvailableResults();
+    this.getAvailableScores();
+    this.computeResults();
+  }
+
+  results = {
+    sysAnalyst: 0,
+    softwareDev: 0,
+    webMultimedia: 0,
+    appProgrammer: 0,
   }
 
   sysAnalystScore: number = 0;
@@ -28,7 +37,7 @@ export class ResultsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private getAvailableResults(): void {
+  private getAvailableScores(): void {
     const usersList = JSON.parse(localStorage.getItem("users-list")!);
     const currentUser = JSON.parse(localStorage.getItem("user")!);
 
@@ -41,4 +50,14 @@ export class ResultsComponent implements OnInit {
       }
     });
   }
+
+  private computeResults(): void {
+    this.results.sysAnalyst = +((this.sysAnalystScore)/(this.max1) * 100).toFixed(2);
+    this.results.softwareDev = +((this.softwareDevScore)/(this.max2) * 100).toFixed(2);
+    this.results.webMultimedia = +((this.webMultimediaScore)/(this.max3) * 100).toFixed(2);
+    this.results.appProgrammer = +((this.appProgrammerScore)/(this.max4) * 100).toFixed(2);
+  }
+
+
+  protected readonly reportUnhandledError = reportUnhandledError;
 }

@@ -3,7 +3,23 @@
     <h1>Survey Results</h1>
 
     <div *ngIf="(sysAnalystScore + softwareDevScore + webMultimediaScore + appProgrammerScore > 0); else noScores">
-      Welcome back! Here are your results!
+      <p>Welcome back! Here are your results!</p>
+
+      <div class="card mb-3">
+        <h5 class="p-2">System Analyst competency: {{results.sysAnalyst}}%</h5>
+      </div>
+
+      <div class="card mb-3">
+        <h5 class="p-2">Software Developer competency: {{results.softwareDev}}%</h5>
+      </div>
+
+      <div class="card mb-3">
+        <h5 class="p-2">Web and Multimedia Developer competency: {{results.webMultimedia}}%</h5>
+      </div>
+
+      <div class="card mb-3">
+        <h5 class="p-2">Application Developer competency: {{results.sysAnalyst}}%</h5>
+      </div>
     </div>
 
     <ng-template #noScores>

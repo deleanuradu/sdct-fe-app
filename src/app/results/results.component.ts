@@ -86,5 +86,4 @@ export class ResultsComponent implements OnInit {
     this.results.appProgrammer =
       +((this.appProgrammerScore - this.min4) / (this.max4 - -this.min4) * 100).toFixed(2);
   }
-
 }

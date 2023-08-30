@@ -31,8 +31,28 @@ export class ResultsComponent implements OnInit {
   max4 = this.min4 * 5;
 
   public radarChartOptions: ChartConfiguration['options'] = {
-    responsive: true
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          // This more specific font property overrides the global property
+          font: {
+            size: 16,
+          }
+        }
+      }
+    },
+    scales: {
+      r: {
+        pointLabels: {
+          font: {
+            size: 14
+          }
+        }
+      }
+    }
   };
+
   public radarChartLabels: string[] = [
     'System Analyst',
     'Software Developer',

@@ -21,6 +21,6 @@ export class PreSurveyQuestionsPage implements OnInit {
   }
 
   submitTriageQuestionSet(): void {
-    this.surveyService.setSurveyQuestions();
+    this.surveyService.generateSurveyQuestionsPool();
   }
 }

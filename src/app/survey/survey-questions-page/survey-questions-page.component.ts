@@ -4,15 +4,15 @@ import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Component({
   selector: 'app-pre-survey-questions-page',
-  templateUrl: './software-dev-questions-page.component.html',
-  styleUrls: ['./software-dev-questions-page.component.less']
+  templateUrl: './survey-questions-page.component.html',
+  styleUrls: ['./survey-questions-page.component.less']
 })
-export class SoftwareDevQuestionsPageComponent implements OnInit {
+export class SurveyQuestionsPageComponent implements OnInit {
 
   constructor(private surveyService: SurveyService) {
   }
 
-  softwareDevMap = this.surveyService.preSurveySoftwareDevMap;
+  surveyMap = this.surveyService.surveyMap;
 
   ngOnInit(): void {
   }

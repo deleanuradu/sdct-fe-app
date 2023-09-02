@@ -7,13 +7,13 @@ import { LayoutComponent } from "@app/survey/layout.component";
 import { StartSurveyPageComponent } from './start-survey-page/start-survey-page.component';
 import { FormsModule } from "@angular/forms";
 import {
-  SoftwareDevQuestionsPageComponent
-} from "@app/survey/software-dev-questiuons-page/software-dev-questions-page.component";
+  SurveyQuestionsPageComponent
+} from "@app/survey/survey-questions-page/survey-questions-page.component";
 
 @NgModule({
   declarations: [
     PreSurveyQuestionsPage,
-    SoftwareDevQuestionsPageComponent,
+    SurveyQuestionsPageComponent,
     SubmitPageComponent,
     LayoutComponent,
     StartSurveyPageComponent

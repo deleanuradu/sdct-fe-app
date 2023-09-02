@@ -5,8 +5,8 @@ import { SubmitPageComponent } from "@app/survey/submit-page/submit-page.compone
 import { LayoutComponent } from "@app/survey/layout.component";
 import { StartSurveyPageComponent } from "@app/survey/start-survey-page/start-survey-page.component";
 import {
-  SoftwareDevQuestionsPageComponent
-} from "@app/survey/software-dev-questiuons-page/software-dev-questions-page.component";
+  SurveyQuestionsPageComponent
+} from "@app/survey/survey-questions-page/survey-questions-page.component";
 
 const routes: Routes = [
     {
@@ -14,7 +14,7 @@ const routes: Routes = [
         children: [
             { path: '', component: StartSurveyPageComponent },
             { path: 'pre-survey', component: PreSurveyQuestionsPage },
-            { path: 'survey', component: SoftwareDevQuestionsPageComponent },
+            { path: 'survey', component: SurveyQuestionsPageComponent },
             { path: 'submit', component:  SubmitPageComponent }
         ]
     }

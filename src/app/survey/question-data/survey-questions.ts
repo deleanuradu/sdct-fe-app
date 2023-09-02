@@ -1,5 +1,5 @@
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
-import { QuestionObjectModel } from "@app/survey/question-object.model";
+import { QuestionObjectModel } from "@app/survey/question-data/question-object.model";
 
 export const SYSTEM_ANALYST_QUESTIONS: QuestionObjectModel[] = [
 

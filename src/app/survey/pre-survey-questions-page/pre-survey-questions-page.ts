@@ -3,11 +3,11 @@ import { SurveyService } from "@app/survey/survey.service";
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Component({
-  selector: 'app-sys-analyst-questions-page',
-  templateUrl: './sys-analyst-questions-page.component.html',
-  styleUrls: ['./sys-analyst-questions-page.component.less']
+  selector: 'app-pre-survey-questions-page',
+  templateUrl: './pre-survey-questions-page.html',
+  styleUrls: ['./pre-survey-questions-page.less']
 })
-export class SysAnalystQuestionsPageComponent implements OnInit {
+export class PreSurveyQuestionsPage implements OnInit {
   sysAnalystMap = this.surveyService.sysAnalystMap;
   protected readonly DevTypesEnum = DevTypesEnum;
 

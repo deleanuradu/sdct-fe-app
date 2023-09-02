@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SurveyRoutingModule } from "@app/survey/survey-routing.module";
-import { SysAnalystQuestionsPageComponent } from '@app/survey/sys-analyst-questions-page/sys-analyst-questions-page.component';
+import { PreSurveyQuestionsPage } from '@app/survey/pre-survey-questions-page/pre-survey-questions-page';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 import { LayoutComponent } from "@app/survey/layout.component";
 import { StartSurveyPageComponent } from './start-survey-page/start-survey-page.component';
@@ -18,7 +18,7 @@ import {
 
 @NgModule({
   declarations: [
-    SysAnalystQuestionsPageComponent,
+    PreSurveyQuestionsPage,
     SoftwareDevQuestionsPageComponent,
     WebMultimediaQuestionsPageComponent,
     ApplicationProgrammerQuestionsPageComponent,

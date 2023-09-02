@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { QuestionMapModel } from "@app/survey/question-map.model";
+import { QuestionMapModel } from "@app/survey/question-data/question-map.model";
 import {
   APPLICATIONS_PROGRAMMERS_QUESTIONS,
   SOFTWARE_DEVELOPER_QUESTIONS,
   SYSTEM_ANALYST_QUESTIONS,
   WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
-} from "@app/survey/mocks";
+} from "@app/survey/question-data/survey-questions";
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SysAnalystQuestionsPageComponent } from "@app/survey/sys-analyst-questions-page/sys-analyst-questions-page.component";
+import { PreSurveyQuestionsPage } from "@app/survey/pre-survey-questions-page/pre-survey-questions-page";
 import { SubmitPageComponent } from "@app/survey/submit-page/submit-page.component";
 import { LayoutComponent } from "@app/survey/layout.component";
 import { StartSurveyPageComponent } from "@app/survey/start-survey-page/start-survey-page.component";
@@ -20,7 +20,7 @@ const routes: Routes = [
         path: '', component: LayoutComponent,
         children: [
             { path: '', component: StartSurveyPageComponent },
-            { path: DevTypesEnum.sysAnalyst, component: SysAnalystQuestionsPageComponent },
+            { path: DevTypesEnum.sysAnalyst, component: PreSurveyQuestionsPage },
             { path: DevTypesEnum.softwareDev, component: SoftwareDevQuestionsPageComponent },
             { path: DevTypesEnum.webMultimedia, component: WebMultimediaQuestionsPageComponent },
             { path: DevTypesEnum.appProgrammer, component: ApplicationProgrammerQuestionsPageComponent },

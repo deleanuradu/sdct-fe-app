@@ -3,7 +3,7 @@ import { SurveyService } from "@app/survey/survey.service";
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Component({
-  selector: 'app-sys-analyst-questions-page',
+  selector: 'app-pre-survey-questions-page',
   templateUrl: './software-dev-questions-page.component.html',
   styleUrls: ['./software-dev-questions-page.component.less']
 })

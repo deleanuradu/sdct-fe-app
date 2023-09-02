@@ -20,10 +20,10 @@ export class ResultsComponent implements OnInit {
   webMultimediaScore: number = 0;
   appProgrammerScore: number = 0;
 
-  min1 = this.surveyService.sysAnalystMap.length;
-  min2 = this.surveyService.softwareDevMap.length;
-  min3 = this.surveyService.webAndMultimediaMap.length;
-  min4 = this.surveyService.appProgrammerMap.length;
+  min1 = this.surveyService.preSurveySysAnalystMap.length;
+  min2 = this.surveyService.preSurveySoftwareDevMap.length;
+  min3 = this.surveyService.preSurveyWebAndMultimediaMap.length;
+  min4 = this.surveyService.preSurveyAppProgrammerMap.length;
 
   max1 = this.min1 * 5;
   max2 = this.min2 * 5;

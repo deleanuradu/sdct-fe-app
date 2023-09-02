@@ -8,7 +8,10 @@ import { DevTypesEnum } from "@app/survey/dev-types.enum";
   styleUrls: ['./pre-survey-questions-page.less']
 })
 export class PreSurveyQuestionsPage implements OnInit {
-  sysAnalystMap = this.surveyService.sysAnalystMap;
+  sysAnalystMap = this.surveyService.preSurveySysAnalystMap;
+  softwareDevMap = this.surveyService.preSurveySoftwareDevMap;
+  webAndMultimediaMap = this.surveyService.preSurveyWebAndMultimediaMap;
+  appProgrammerMap = this.surveyService.preSurveyAppProgrammerMap;
   protected readonly DevTypesEnum = DevTypesEnum;
 
   constructor(private surveyService: SurveyService) {
@@ -17,7 +20,7 @@ export class PreSurveyQuestionsPage implements OnInit {
   ngOnInit(): void {
   }
 
-  submitQuestionSet(): void {
+  submitTriageQuestionSet(): void {
     this.surveyService.updateResult(DevTypesEnum.sysAnalyst);
   }
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { QuestionMapModel } from "@app/survey/question-data/question-map.model";
+import { SimpleQuestionMapModel } from "@app/survey/question-data/simple-question-map.model";
 import {
   APPLICATIONS_PROGRAMMERS_QUESTIONS,
   SOFTWARE_DEVELOPER_QUESTIONS,
   SYSTEM_ANALYST_QUESTIONS,
   WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
-} from "@app/survey/question-data/survey-questions";
+} from "@app/survey/question-data/pre-survey-questions";
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Injectable({
@@ -17,26 +17,23 @@ export class SurveyService {
     this.initMaps();
   }
 
-  sysAnalystMap: QuestionMapModel[] = [];
-  softwareDevMap: QuestionMapModel[] = [];
-  webAndMultimediaMap: QuestionMapModel[] = [];
-  appProgrammerMap: QuestionMapModel[] = [];
+  preSurveySysAnalystMap: SimpleQuestionMapModel[] = [];
+  preSurveySoftwareDevMap: SimpleQuestionMapModel[] = [];
+  preSurveyWebAndMultimediaMap: SimpleQuestionMapModel[] = [];
+  preSurveyAppProgrammerMap: SimpleQuestionMapModel[] = [];
 
   public initMaps(): void {
-    this.sysAnalystMap = SYSTEM_ANALYST_QUESTIONS.map(elem => {
-      return {question: elem, value: 1} as QuestionMapModel;
+    this.preSurveySysAnalystMap = SYSTEM_ANALYST_QUESTIONS.map(elem => {
+      return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
-
-    this.softwareDevMap = SOFTWARE_DEVELOPER_QUESTIONS.map(elem => {
-      return {question: elem, value: 1} as QuestionMapModel;
+    this.preSurveySoftwareDevMap = SOFTWARE_DEVELOPER_QUESTIONS.map(elem => {
+      return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
-
-    this.webAndMultimediaMap = WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.map(elem => {
-      return {question: elem, value: 1} as QuestionMapModel;
+    this.preSurveyWebAndMultimediaMap = WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.map(elem => {
+      return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
-
-    this.appProgrammerMap = APPLICATIONS_PROGRAMMERS_QUESTIONS.map(elem => {
-      return {question: elem, value: 1} as QuestionMapModel;
+    this.preSurveyAppProgrammerMap = APPLICATIONS_PROGRAMMERS_QUESTIONS.map(elem => {
+      return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
   }
 
@@ -46,7 +43,7 @@ export class SurveyService {
 
     switch(type) {
       case DevTypesEnum.sysAnalyst: {
-        let sysAnalystScore = this.sysAnalystMap.reduce((acc, question) => {
+        let sysAnalystScore = this.preSurveySysAnalystMap.reduce((acc, question) => {
           return acc + question.value;
         }, 0);
 
@@ -58,7 +55,7 @@ export class SurveyService {
         break;
       }
       case DevTypesEnum.softwareDev: {
-        let softwareDevScore = this.softwareDevMap.reduce((acc, question) => {
+        let softwareDevScore = this.preSurveySoftwareDevMap.reduce((acc, question) => {
           return acc + question.value;
         }, 0);
 
@@ -70,7 +67,7 @@ export class SurveyService {
         break;
       }
       case DevTypesEnum.webMultimedia: {
-        let webMultimediaScore = this.webAndMultimediaMap.reduce((acc, question) => {
+        let webMultimediaScore = this.preSurveyWebAndMultimediaMap.reduce((acc, question) => {
           return acc + question.value;
         }, 0);
 
@@ -82,7 +79,7 @@ export class SurveyService {
         break;
       }
       case DevTypesEnum.appProgrammer: {
-        let appProgrammerScore = this.appProgrammerMap.reduce((acc, question) => {
+        let appProgrammerScore = this.preSurveyAppProgrammerMap.reduce((acc, question) => {
           return acc + question.value;
         }, 0);
 

@@ -7,23 +7,14 @@ import { StartSurveyPageComponent } from "@app/survey/start-survey-page/start-su
 import {
   SoftwareDevQuestionsPageComponent
 } from "@app/survey/software-dev-questiuons-page/software-dev-questions-page.component";
-import { DevTypesEnum } from "@app/survey/dev-types.enum";
-import {
-  WebMultimediaQuestionsPageComponent
-} from "@app/survey/web-multimedia-questions-page/web-multimedia-questions-page.component";
-import {
-  ApplicationProgrammerQuestionsPageComponent
-} from "@app/survey/application-programmer-questions-page/application-programmer-questions-page.component";
 
 const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
             { path: '', component: StartSurveyPageComponent },
-            { path: DevTypesEnum.sysAnalyst, component: PreSurveyQuestionsPage },
-            { path: DevTypesEnum.softwareDev, component: SoftwareDevQuestionsPageComponent },
-            { path: DevTypesEnum.webMultimedia, component: WebMultimediaQuestionsPageComponent },
-            { path: DevTypesEnum.appProgrammer, component: ApplicationProgrammerQuestionsPageComponent },
+            { path: 'pre-survey', component: PreSurveyQuestionsPage },
+            { path: 'survey', component: SoftwareDevQuestionsPageComponent },
             { path: 'submit', component:  SubmitPageComponent }
         ]
     }

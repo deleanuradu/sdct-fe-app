@@ -9,19 +9,11 @@ import { FormsModule } from "@angular/forms";
 import {
   SoftwareDevQuestionsPageComponent
 } from "@app/survey/software-dev-questiuons-page/software-dev-questions-page.component";
-import {
-  WebMultimediaQuestionsPageComponent
-} from "@app/survey/web-multimedia-questions-page/web-multimedia-questions-page.component";
-import {
-  ApplicationProgrammerQuestionsPageComponent
-} from "@app/survey/application-programmer-questions-page/application-programmer-questions-page.component";
 
 @NgModule({
   declarations: [
     PreSurveyQuestionsPage,
     SoftwareDevQuestionsPageComponent,
-    WebMultimediaQuestionsPageComponent,
-    ApplicationProgrammerQuestionsPageComponent,
     SubmitPageComponent,
     LayoutComponent,
     StartSurveyPageComponent
@@ -32,4 +24,5 @@ import {
     FormsModule
   ]
 })
-export class SurveyModule { }
+export class SurveyModule {
+}

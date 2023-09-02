@@ -12,7 +12,7 @@ export class SoftwareDevQuestionsPageComponent implements OnInit {
   constructor(private surveyService: SurveyService) {
   }
 
-  softwareDevMap = this.surveyService.softwareDevMap;
+  softwareDevMap = this.surveyService.preSurveySoftwareDevMap;
 
   ngOnInit(): void {
   }

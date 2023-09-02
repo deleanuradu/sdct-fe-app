@@ -32,6 +32,11 @@
       </canvas>
     </div>
 
+    <div class="card mb-3">
+      <h5 class="p-2 pb-0">Your Top 5 Skills:</h5>
+      <h6 *ngFor="let skill of topFiveSkills" class="m-1">- {{skill.name}}</h6>
+    </div>
+
     <ng-template #noScores>
       <p>Unfortunately there are no results available yet. Make sure to complete all of the question sets on the survey page to generate the results.</p>
       <a routerLink="../survey" class="btn btn-xl btn-primary mb-2">Take me to the survey 📄</a>

@@ -8,6 +8,7 @@ import {
   SYSTEM_ANALYST_QUESTIONS,
   WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
 } from "@app/survey/question-data/survey-questions";
+import { SkillScore } from "@app/results/complex-results.model";
 
 @Component({
   selector: 'app-results', templateUrl: './results.component.html', styleUrls: ['./results.component.less']
@@ -25,6 +26,8 @@ export class ResultsComponent implements OnInit {
   softwareDevScore: number = 0;
   webMultimediaScore: number = 0;
   appProgrammerScore: number = 0;
+
+  topFiveSkills: SkillScore[] = [];
 
   min1 = SYSTEM_ANALYST_QUESTIONS.length;
   min2 = SOFTWARE_DEVELOPER_QUESTIONS.length;
@@ -71,6 +74,7 @@ export class ResultsComponent implements OnInit {
   constructor(private surveyService: SurveyService) {
     this.getAvailableScores();
     this.computeResults();
+    this.processSkills();
     this.initCharts();
   }
 
@@ -102,8 +106,15 @@ export class ResultsComponent implements OnInit {
         this.softwareDevScore = user?.surveyResults?.devTypesScores?.softwareDev;
         this.webMultimediaScore = user?.surveyResults?.devTypesScores?.webMultimedia;
         this.appProgrammerScore = user?.surveyResults?.devTypesScores?.appProgrammer;
+
+        console.log(user?.surveyResults?.skills.
+        sort((a: SkillScore, b:SkillScore) => a.value - b.value));
+
+        this.topFiveSkills = user?.surveyResults?.skills.
+        sort((a: SkillScore, b:SkillScore) => b.value - a.value).slice(0, 5);
       }
     });
+
   }
 
   // expressed in percentages
@@ -116,5 +127,9 @@ export class ResultsComponent implements OnInit {
       +(((this.webMultimediaScore > 0 ? this.webMultimediaScore - this.min3 : 0) / (this.max3 - this.min3) * 100).toFixed(2));
     this.results.appProgrammer =
       +((this.appProgrammerScore > 0 ? this.appProgrammerScore - this.min4 : 0) / (this.max4 - -this.min4) * 100).toFixed(2);
+  }
+
+  private processSkills(): void {
+
   }
 }

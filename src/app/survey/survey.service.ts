@@ -1,20 +1,31 @@
 import { Injectable } from '@angular/core';
 import { SimpleQuestionMapModel } from "@app/survey/question-data/simple-question-map.model";
 import {
-  APPLICATIONS_PROGRAMMERS_QUESTIONS,
+  PRE_SURVEY_APPLICATIONS_PROGRAMMER_QUESTIONS,
+  PRE_SURVEY_SOFTWARE_DEVELOPER_QUESTIONS,
+  PRE_SURVEY_SYSTEM_ANALYST_QUESTIONS,
+  PRE_SURVEY_WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
+} from "@app/survey/question-data/pre-survey-questions";
+import { DevTypesEnum } from "@app/survey/dev-types.enum";
+import { QuestionMapModel } from "@app/survey/question-data/question-map-model";
+import {
+  APPLICATIONS_PROGRAMMER_QUESTIONS,
   SOFTWARE_DEVELOPER_QUESTIONS,
   SYSTEM_ANALYST_QUESTIONS,
   WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
-} from "@app/survey/question-data/pre-survey-questions";
-import { DevTypesEnum } from "@app/survey/dev-types.enum";
+} from "@app/survey/question-data/survey-questions";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SurveyService {
+  private sysAnalystMap: QuestionMapModel[] = [];
+  private softwareDevMap: QuestionMapModel[] = [];
+  private webMultimediaMap: QuestionMapModel[] = [];
+  private appProgrammerMap: QuestionMapModel[] = [];
 
   constructor() {
-    this.initMaps();
+    this.initPreSurveyMapsMaps();
   }
 
   preSurveySysAnalystMap: SimpleQuestionMapModel[] = [];
@@ -22,18 +33,66 @@ export class SurveyService {
   preSurveyWebAndMultimediaMap: SimpleQuestionMapModel[] = [];
   preSurveyAppProgrammerMap: SimpleQuestionMapModel[] = [];
 
-  public initMaps(): void {
-    this.preSurveySysAnalystMap = SYSTEM_ANALYST_QUESTIONS.map(elem => {
+  surveyMap: QuestionMapModel[] = [];
+
+  public initPreSurveyMapsMaps(): void {
+    this.preSurveySysAnalystMap = PRE_SURVEY_SYSTEM_ANALYST_QUESTIONS.map(elem => {
       return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
-    this.preSurveySoftwareDevMap = SOFTWARE_DEVELOPER_QUESTIONS.map(elem => {
+    this.preSurveySoftwareDevMap = PRE_SURVEY_SOFTWARE_DEVELOPER_QUESTIONS.map(elem => {
       return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
-    this.preSurveyWebAndMultimediaMap = WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.map(elem => {
+    this.preSurveyWebAndMultimediaMap = PRE_SURVEY_WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.map(elem => {
       return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
-    this.preSurveyAppProgrammerMap = APPLICATIONS_PROGRAMMERS_QUESTIONS.map(elem => {
+    this.preSurveyAppProgrammerMap = PRE_SURVEY_APPLICATIONS_PROGRAMMER_QUESTIONS.map(elem => {
       return {question: elem.question, value: 1} as SimpleQuestionMapModel;
+    });
+  }
+
+  public initSurveyMaps(): void {
+    this.sysAnalystMap = SYSTEM_ANALYST_QUESTIONS.map(elem => {
+      return {
+        question: elem.question,
+        value: elem.value,
+        skills: elem.skills,
+        profession: elem.profession,
+        devType: elem.devType,
+        score: 1
+      } as QuestionMapModel;
+    });
+
+    this.softwareDevMap = SOFTWARE_DEVELOPER_QUESTIONS.map(elem => {
+      return {
+        question: elem.question,
+        value: elem.value,
+        skills: elem.skills,
+        profession: elem.profession,
+        devType: elem.devType,
+        score: 1
+      } as QuestionMapModel;
+    });
+
+    this.webMultimediaMap = WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.map(elem => {
+      return {
+        question: elem.question,
+        value: elem.value,
+        skills: elem.skills,
+        profession: elem.profession,
+        devType: elem.devType,
+        score: 1
+      } as QuestionMapModel;
+    });
+
+    this.appProgrammerMap = APPLICATIONS_PROGRAMMER_QUESTIONS.map(elem => {
+      return {
+        question: elem.question,
+        value: elem.value,
+        skills: elem.skills,
+        profession: elem.profession,
+        devType: elem.devType,
+        score: 1
+      } as QuestionMapModel;
     });
   }
 
@@ -97,4 +156,56 @@ export class SurveyService {
 
     localStorage.setItem("users-list", JSON.stringify(savedUsersData));
   }
+
+  public setSurveyQuestions(): void {
+    // reset survey map
+    this.surveyMap = [];
+
+    let preSurveyScores = {
+      sysAnalystScore: 0,
+      softwareDevScore: 0,
+      webMultimediaScore: 0,
+      appProgrammerScore: 0
+    }
+
+    preSurveyScores.sysAnalystScore = this.preSurveySysAnalystMap.reduce((acc, question) => {
+      return acc + question.value;
+    }, 0);
+    preSurveyScores.softwareDevScore = this.preSurveySoftwareDevMap.reduce((acc, question) => {
+      return acc + question.value;
+    }, 0);
+    preSurveyScores.webMultimediaScore = this.preSurveyWebAndMultimediaMap.reduce((acc, question) => {
+      return acc + question.value;
+    }, 0);
+    preSurveyScores.appProgrammerScore = this.preSurveyAppProgrammerMap.reduce((acc, question) => {
+      return acc + question.value;
+    }, 0);
+
+    this.initSurveyMaps();
+
+    // dynamically add questions to pool
+    if (preSurveyScores.sysAnalystScore >= 5) {
+      this.surveyMap = this.surveyMap.concat(this.sysAnalystMap);
+    }
+    if (preSurveyScores.softwareDevScore >= 5) {
+      this.surveyMap = this.surveyMap.concat(this.softwareDevMap);
+    }
+    if (preSurveyScores.webMultimediaScore >= 5) {
+      this.surveyMap = this.surveyMap.concat(this.webMultimediaMap);
+    }
+    if (preSurveyScores.appProgrammerScore >= 5) {
+      this.surveyMap = this.surveyMap.concat(this.appProgrammerMap);
+    }
+
+    // if pool empty, add all questions
+    if (this.surveyMap.length === 0) {
+      this.surveyMap = [
+        ...this.sysAnalystMap,
+        ...this.softwareDevMap,
+        ...this.webMultimediaMap,
+        ...this.appProgrammerMap
+      ];
+    }
+  }
+
 }

@@ -21,6 +21,6 @@ export class PreSurveyQuestionsPage implements OnInit {
   }
 
   submitTriageQuestionSet(): void {
-    this.surveyService.updateResult(DevTypesEnum.sysAnalyst);
+    this.surveyService.setSurveyQuestions();
   }
 }

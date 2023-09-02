@@ -1,7 +1,7 @@
 import { QuestionObjectModel } from "@app/survey/question-data/question-object.model";
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
-export const SYSTEM_ANALYST_QUESTIONS: QuestionObjectModel[] = [
+export const PRE_SURVEY_SYSTEM_ANALYST_QUESTIONS: QuestionObjectModel[] = [
   {
     question: "1. System Analysis Skills: On a scale of 1 to 5, rate your proficiency in conducting system analysis, understanding business requirements, and designing system solutions.",
     value: 2,
@@ -27,8 +27,7 @@ export const SYSTEM_ANALYST_QUESTIONS: QuestionObjectModel[] = [
   },
 ];
 
-
-export const SOFTWARE_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
+export const PRE_SURVEY_SOFTWARE_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
   {
     question: "1. Programming Languages: Rate your proficiency in programming languages relevant to your role. (1 = Novice, 5 = Expert)",
     value: 2,
@@ -54,7 +53,7 @@ export const SOFTWARE_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
   },
 ];
 
-export const WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
+export const PRE_SURVEY_WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
   {
     question: "1. Front-End Development: Rate your expertise in front-end web technologies such as HTML, CSS, and JavaScript. (1 = Novice, 5 = Expert)",
     value: 2,
@@ -80,7 +79,7 @@ export const WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
   },
 ];
 
-export const APPLICATIONS_PROGRAMMERS_QUESTIONS: QuestionObjectModel[] = [
+export const PRE_SURVEY_APPLICATIONS_PROGRAMMER_QUESTIONS: QuestionObjectModel[] = [
   {
     question: "1. Configuration Skills: Rate your proficiency in configuring ICT applications and systems. (1 = Novice, 5 = Expert)",
     value: 2,

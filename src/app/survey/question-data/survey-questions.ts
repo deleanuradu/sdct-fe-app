@@ -509,7 +509,7 @@ export const WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
 
 ];
 
-export const APPLICATIONS_PROGRAMMERS_QUESTIONS: QuestionObjectModel[] = [
+export const APPLICATIONS_PROGRAMMER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "Rate your ability (1 to 5) to build business relationships and communicate effectively.",

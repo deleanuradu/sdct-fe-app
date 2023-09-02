@@ -15,6 +15,6 @@ export class AppComponent {
 
   logout() {
     this.accountService.logout();
-    this.surveyService.initMaps();
+    this.surveyService.initPreSurveyMapsMaps();
   }
 }

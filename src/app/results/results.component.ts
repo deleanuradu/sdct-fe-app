@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SurveyService } from "@app/survey/survey.service";
 import { reportUnhandledError } from "rxjs/internal/util/reportUnhandledError";
 import { ChartConfiguration, ChartData, ChartType } from "chart.js";
+import {
+  APPLICATION_PROGRAMMER_QUESTIONS,
+  SOFTWARE_DEVELOPER_QUESTIONS,
+  SYSTEM_ANALYST_QUESTIONS,
+  WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
+} from "@app/survey/question-data/survey-questions";
 
 @Component({
   selector: 'app-results', templateUrl: './results.component.html', styleUrls: ['./results.component.less']
@@ -20,10 +26,10 @@ export class ResultsComponent implements OnInit {
   webMultimediaScore: number = 0;
   appProgrammerScore: number = 0;
 
-  min1 = this.surveyService.preSurveySysAnalystMap.length;
-  min2 = this.surveyService.preSurveySoftwareDevMap.length;
-  min3 = this.surveyService.preSurveyWebAndMultimediaMap.length;
-  min4 = this.surveyService.preSurveyAppProgrammerMap.length;
+  min1 = SYSTEM_ANALYST_QUESTIONS.length;
+  min2 = SOFTWARE_DEVELOPER_QUESTIONS.length;
+  min3 = WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.length;
+  min4 = APPLICATION_PROGRAMMER_QUESTIONS.length;
 
   max1 = this.min1 * 5;
   max2 = this.min2 * 5;
@@ -61,7 +67,6 @@ export class ResultsComponent implements OnInit {
   ];
   public radarChartType: ChartType = 'radar';
   public radarChartData: ChartData<'radar'> | undefined;
-  protected readonly reportUnhandledError = reportUnhandledError;
 
   constructor(private surveyService: SurveyService) {
     this.getAvailableScores();
@@ -80,7 +85,8 @@ export class ResultsComponent implements OnInit {
           this.results.sysAnalyst,
           this.results.softwareDev,
           this.results.webMultimedia,
-          this.results.appProgrammer,],
+          this.results.appProgrammer,
+        ],
         label: 'Your results'
       },],
     };
@@ -92,10 +98,10 @@ export class ResultsComponent implements OnInit {
 
     usersList.forEach((user: any) => {
       if (user.id === currentUser.id) {
-        this.sysAnalystScore = user?.sysAnalystScore;
-        this.softwareDevScore = user?.softwareDevScore;
-        this.webMultimediaScore = user?.webMultimediaScore;
-        this.appProgrammerScore = user?.appProgrammerScore;
+        this.sysAnalystScore = user?.surveyResults?.devTypesScores?.sysAnalyst;
+        this.softwareDevScore = user?.surveyResults?.devTypesScores?.softwareDev;
+        this.webMultimediaScore = user?.surveyResults?.devTypesScores?.webMultimedia;
+        this.appProgrammerScore = user?.surveyResults?.devTypesScores?.appProgrammer;
       }
     });
   }
@@ -103,12 +109,12 @@ export class ResultsComponent implements OnInit {
   // expressed in percentages
   private computeResults(): void {
     this.results.sysAnalyst =
-      +((this.sysAnalystScore - this.min1) / (this.max1 - this.min1) * 100).toFixed(2);
+      +((this.sysAnalystScore > 0 ? this.sysAnalystScore - this.min1 : 0) / (this.max1 - this.min1) * 100).toFixed(2);
     this.results.softwareDev =
-      +((this.softwareDevScore - this.min2) / (this.max2 - this.min2) * 100).toFixed(2);
+      +((this.softwareDevScore > 0 ? this.softwareDevScore - this.min2 : 0) / (this.max2 - this.min2) * 100).toFixed(2);
     this.results.webMultimedia =
-      +((this.webMultimediaScore - this.min3) / (this.max3 - this.min3) * 100).toFixed(2);
+      +(((this.webMultimediaScore > 0 ? this.webMultimediaScore - this.min3 : 0) / (this.max3 - this.min3) * 100).toFixed(2));
     this.results.appProgrammer =
-      +((this.appProgrammerScore - this.min4) / (this.max4 - -this.min4) * 100).toFixed(2);
+      +((this.appProgrammerScore > 0 ? this.appProgrammerScore - this.min4 : 0) / (this.max4 - -this.min4) * 100).toFixed(2);
   }
 }

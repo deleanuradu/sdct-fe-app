@@ -18,7 +18,7 @@ export class SurveyQuestionsPageComponent implements OnInit {
   }
 
   submitQuestionSet(): void {
-    this.surveyService.updateResult(DevTypesEnum.softwareDev);
+    this.surveyService.storeResults();
   }
 
   protected readonly DevTypesEnum = DevTypesEnum;

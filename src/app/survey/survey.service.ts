@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { SimpleQuestionMapModel } from "@app/survey/question-data/simple-question-map.model";
 import {
-  PRE_SURVEY_APPLICATIONS_PROGRAMMER_QUESTIONS,
+  PRE_SURVEY_APPLICATION_PROGRAMMER_QUESTIONS,
   PRE_SURVEY_SOFTWARE_DEVELOPER_QUESTIONS,
   PRE_SURVEY_SYSTEM_ANALYST_QUESTIONS,
   PRE_SURVEY_WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
 } from "@app/survey/question-data/pre-survey-questions";
-import { DevTypesEnum } from "@app/survey/dev-types.enum";
 import { QuestionMapModel } from "@app/survey/question-data/question-map-model";
 import {
-  APPLICATIONS_PROGRAMMER_QUESTIONS,
+  APPLICATION_PROGRAMMER_QUESTIONS, LIST_OF_SKILLS,
   SOFTWARE_DEVELOPER_QUESTIONS,
   SYSTEM_ANALYST_QUESTIONS,
   WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
 } from "@app/survey/question-data/survey-questions";
+import { ComplexResultsModel, SkillScore } from "@app/results/complex-results.model";
+import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SurveyService {
+  preSurveySysAnalystMap: SimpleQuestionMapModel[] = [];
+  preSurveySoftwareDevMap: SimpleQuestionMapModel[] = [];
+  preSurveyWebAndMultimediaMap: SimpleQuestionMapModel[] = [];
+  preSurveyAppProgrammerMap: SimpleQuestionMapModel[] = [];
+  surveyMap: QuestionMapModel[] = [];
   private sysAnalystMap: QuestionMapModel[] = [];
   private softwareDevMap: QuestionMapModel[] = [];
   private webMultimediaMap: QuestionMapModel[] = [];
@@ -27,13 +33,6 @@ export class SurveyService {
   constructor() {
     this.initPreSurveyMapsMaps();
   }
-
-  preSurveySysAnalystMap: SimpleQuestionMapModel[] = [];
-  preSurveySoftwareDevMap: SimpleQuestionMapModel[] = [];
-  preSurveyWebAndMultimediaMap: SimpleQuestionMapModel[] = [];
-  preSurveyAppProgrammerMap: SimpleQuestionMapModel[] = [];
-
-  surveyMap: QuestionMapModel[] = [];
 
   public initPreSurveyMapsMaps(): void {
     this.preSurveySysAnalystMap = PRE_SURVEY_SYSTEM_ANALYST_QUESTIONS.map(elem => {
@@ -45,7 +44,7 @@ export class SurveyService {
     this.preSurveyWebAndMultimediaMap = PRE_SURVEY_WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.map(elem => {
       return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
-    this.preSurveyAppProgrammerMap = PRE_SURVEY_APPLICATIONS_PROGRAMMER_QUESTIONS.map(elem => {
+    this.preSurveyAppProgrammerMap = PRE_SURVEY_APPLICATION_PROGRAMMER_QUESTIONS.map(elem => {
       return {question: elem.question, value: 1} as SimpleQuestionMapModel;
     });
   }
@@ -54,7 +53,7 @@ export class SurveyService {
     this.sysAnalystMap = SYSTEM_ANALYST_QUESTIONS.map(elem => {
       return {
         question: elem.question,
-        value: elem.value,
+        weight: elem.weight,
         skills: elem.skills,
         profession: elem.profession,
         devType: elem.devType,
@@ -65,7 +64,7 @@ export class SurveyService {
     this.softwareDevMap = SOFTWARE_DEVELOPER_QUESTIONS.map(elem => {
       return {
         question: elem.question,
-        value: elem.value,
+        weight: elem.weight,
         skills: elem.skills,
         profession: elem.profession,
         devType: elem.devType,
@@ -76,7 +75,7 @@ export class SurveyService {
     this.webMultimediaMap = WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS.map(elem => {
       return {
         question: elem.question,
-        value: elem.value,
+        weight: elem.weight,
         skills: elem.skills,
         profession: elem.profession,
         devType: elem.devType,
@@ -84,10 +83,10 @@ export class SurveyService {
       } as QuestionMapModel;
     });
 
-    this.appProgrammerMap = APPLICATIONS_PROGRAMMER_QUESTIONS.map(elem => {
+    this.appProgrammerMap = APPLICATION_PROGRAMMER_QUESTIONS.map(elem => {
       return {
         question: elem.question,
-        value: elem.value,
+        weight: elem.weight,
         skills: elem.skills,
         profession: elem.profession,
         devType: elem.devType,
@@ -96,63 +95,57 @@ export class SurveyService {
     });
   }
 
-  public updateResult(type: string): void {
+  public storeResults(): void {
     let currentUser = JSON.parse(localStorage.getItem('user')!);
     let savedUsersData = JSON.parse(localStorage.getItem('users-list')!);
 
-    switch(type) {
-      case DevTypesEnum.sysAnalyst: {
-        let sysAnalystScore = this.preSurveySysAnalystMap.reduce((acc, question) => {
-          return acc + question.value;
-        }, 0);
-
-        savedUsersData.forEach((elem: { id: any; sysAnalystScore: number; }) => {
-          if (elem.id === currentUser.id) {
-            elem.sysAnalystScore = sysAnalystScore;
-          }
-        })
-        break;
-      }
-      case DevTypesEnum.softwareDev: {
-        let softwareDevScore = this.preSurveySoftwareDevMap.reduce((acc, question) => {
-          return acc + question.value;
-        }, 0);
-
-        savedUsersData.forEach((elem: { id: any; softwareDevScore: number; }) => {
-          if (elem.id === currentUser.id) {
-            elem.softwareDevScore = softwareDevScore;
-          }
-        })
-        break;
-      }
-      case DevTypesEnum.webMultimedia: {
-        let webMultimediaScore = this.preSurveyWebAndMultimediaMap.reduce((acc, question) => {
-          return acc + question.value;
-        }, 0);
-
-        savedUsersData.forEach((elem: { id: any; webMultimediaScore: number; }) => {
-          if (elem.id === currentUser.id) {
-            elem.webMultimediaScore = webMultimediaScore;
-          }
-        })
-        break;
-      }
-      case DevTypesEnum.appProgrammer: {
-        let appProgrammerScore = this.preSurveyAppProgrammerMap.reduce((acc, question) => {
-          return acc + question.value;
-        }, 0);
-
-        savedUsersData.forEach((elem: { id: any; appProgrammerScore: number; }) => {
-          if (elem.id === currentUser.id) {
-            elem.appProgrammerScore = appProgrammerScore;
-          }
-        })
-        break;
-      }
-      default: {
-        break;
-      }
+    let surveyResults = new ComplexResultsModel();
+    surveyResults.devTypesScores = {
+      sysAnalyst: 0,
+      softwareDev: 0,
+      webMultimedia: 0,
+      appProgrammer: 0
     }
+    // init surveyResults.skills with first skill
+    surveyResults.skills = [
+      {
+        name: this.surveyMap[0].skills[0],
+        value: 0
+      }
+    ];
+
+    let mappedSkills = LIST_OF_SKILLS.map(skill => {
+      return {name: skill, value: 0};
+    })
+
+    this.surveyMap.forEach(question => {
+      // compute each dev type score
+      if (question.devType === DevTypesEnum.sysAnalyst) {
+        surveyResults.devTypesScores!.sysAnalyst += question.score;
+      }
+      if (question.devType === DevTypesEnum.softwareDev) {
+        surveyResults.devTypesScores!.softwareDev += question.score;
+      }
+      if (question.devType === DevTypesEnum.webMultimedia) {
+        surveyResults.devTypesScores!.webMultimedia += question.score;
+      }
+      if (question.devType === DevTypesEnum.appProgrammer) {
+        surveyResults.devTypesScores!.appProgrammer += question.score;
+      }
+
+      question.skills.forEach(questionSkill => {
+        let index = mappedSkills.findIndex(elem => elem.name === questionSkill);
+        mappedSkills[index].value += question.score * question.weight;
+      });
+    });
+
+    surveyResults.skills = mappedSkills;
+
+    savedUsersData.forEach((elem: { id: any; surveyResults: ComplexResultsModel; }) => {
+      if (elem.id === currentUser.id) {
+        elem.surveyResults = surveyResults;
+      }
+    });
 
     localStorage.setItem("users-list", JSON.stringify(savedUsersData));
   }
@@ -211,7 +204,7 @@ export class SurveyService {
   }
 
   public shuffle(array: Array<any>): Array<any> {
-    let currentIndex = array.length,  randomIndex;
+    let currentIndex = array.length, randomIndex;
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
       // Pick a remaining element.

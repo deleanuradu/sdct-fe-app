@@ -1,6 +1,6 @@
 export interface QuestionObjectModel {
   question: string
-  value: number,
+  weight: number,
   skills: string[];
   profession: string[];
   devType: string;

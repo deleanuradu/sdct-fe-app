@@ -22,24 +22,46 @@
       </div>
 
 
-      <canvas
-        baseChart
-        class="chart chart-height"
-        [data]="radarChartData"
-        [options]="radarChartOptions"
-        [type]="radarChartType"
-      >
-      </canvas>
-    </div>
+      <div class="radar-container">
+        <canvas
+          baseChart
+          class="chart chart-height"
+          [data]="radarChartData"
+          [options]="radarChartOptions"
+          [type]="radarChartType"
+        >
+        </canvas>
+      </div>
 
-    <div class="card mb-3">
-      <h5 class="p-2 pb-0">Your Top 5 Skills:</h5>
-      <h6 *ngFor="let skill of topFiveSkills" class="m-1">- {{skill.name}}</h6>
-    </div>
 
-    <ng-template #noScores>
-      <p>Unfortunately there are no results available yet. Make sure to complete all of the question sets on the survey page to generate the results.</p>
-      <a routerLink="../survey" class="btn btn-xl btn-primary mb-2">Take me to the survey 📄</a>
-    </ng-template>
+      <div class="card mb-3">
+        <h5 class="p-2 pb-0">🎯 Your Top 5 Skills:</h5>
+        <h6 *ngFor="let skill of topFiveSkills" class="skill-margin-left">- {{skill.name}}</h6>
+      </div>
+
+      <p class="mb-3 mt-5">Based on your survey answers, it seems the best profession for you is:</p>
+      <div class="card mb-3">
+        <h5 class="m-0 p-2 skill-margin-left">💻 {{professionsMap[0].name}}</h5>
+      </div>
+
+      <div class="card mb-3">
+        <h6 class="p-2">Skills required for this profession:</h6>
+        <h6 *ngFor="let skill of professionsMap[0].skills" class="skill-margin-left">- {{skill}}</h6>
+      </div>
+
+      <p class="mb-3 mt-5">Other positions that may be a good fit for your skills:</p>
+      <div class="card mb-3">
+        <h6 class="m-0 p-2 skill-margin-left">💻 {{professionsMap[1].name}}</h6>
+        <h6 class="m-0 p-2 skill-margin-left">💻 {{professionsMap[2].name}}</h6>
+        <h6 class="m-0 p-2 skill-margin-left">💻 {{professionsMap[3].name}}</h6>
+      </div>
+
+    </div>
   </div>
+
+  <ng-template #noScores>
+    <p>Unfortunately there are no results available yet.
+      Make sure to complete the survey in order to generate your results and personalized recommendations.</p>
+    <a routerLink="../survey" class="btn btn-xl btn-primary mb-2">Take me to the survey 📄</a>
+  </ng-template>
 </div>

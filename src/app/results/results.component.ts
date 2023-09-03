@@ -30,7 +30,7 @@ export class ResultsComponent implements OnInit {
   appProgrammerScore: number = 0;
 
   topFiveSkills: SkillScore[] = [];
-  topFifteenSkills: string[] = [];
+  topTenSkills: string[] = [];
 
   min1 = SYSTEM_ANALYST_QUESTIONS.length;
   min2 = SOFTWARE_DEVELOPER_QUESTIONS.length;
@@ -72,7 +72,7 @@ export class ResultsComponent implements OnInit {
   ];
   public radarChartType: ChartType = 'radar';
   public radarChartData: ChartData<'radar'> | undefined;
-  private professionsMap: ProfessionMapModel[] = [];
+  public professionsMap: ProfessionMapModel[] = [];
 
   constructor(private surveyService: SurveyService) {
     this.getAvailableScores();
@@ -111,15 +111,15 @@ export class ResultsComponent implements OnInit {
         this.appProgrammerScore = user?.surveyResults?.devTypesScores?.appProgrammer;
 
         this.topFiveSkills = user?.surveyResults?.skills.sort((a: SkillScore, b: SkillScore) => b.value - a.value).slice(0, 5);
-        this.topFifteenSkills = user?.surveyResults?.skills
+        this.topTenSkills = user?.surveyResults?.skills
           .sort((a: SkillScore, b: SkillScore) => b.value - a.value)
-          .slice(0, 15)
+          .slice(0, 10)
           .map((elem: SkillScore) => {
           return elem.name;
         });
 
-        console.log(this.topFifteenSkills);
-        console.log(this.topFiveSkills);
+        console.log("Top five skill scores: ", this.topFiveSkills);
+        console.log("Top ten skills: ", this.topTenSkills);
       }
     });
 
@@ -150,8 +150,8 @@ export class ResultsComponent implements OnInit {
       } as ProfessionMapModel;
     });
 
-    this.professionsMap.forEach(profession => {
-      this.topFifteenSkills.forEach(topSkill => {
+    this.professionsMap?.forEach(profession => {
+      this.topTenSkills?.forEach(topSkill => {
         if (profession.skills.includes(topSkill)) {
           profession.score++;
         }
@@ -159,6 +159,6 @@ export class ResultsComponent implements OnInit {
     })
 
     this.professionsMap.sort((a: ProfessionMapModel, b: ProfessionMapModel) => b.score - a.score);
-    console.log(this.professionsMap);
+    console.log("Profession scores: ", this.professionsMap);
   }
 }

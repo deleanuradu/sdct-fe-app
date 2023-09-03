@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from "@app/survey/survey.service";
-import { reportUnhandledError } from "rxjs/internal/util/reportUnhandledError";
 import { ChartConfiguration, ChartData, ChartType } from "chart.js";
 import {
   APPLICATION_PROGRAMMER_QUESTIONS,
@@ -9,6 +8,9 @@ import {
   WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
 } from "@app/survey/question-data/survey-questions";
 import { SkillScore } from "@app/results/complex-results.model";
+import { QuestionMapModel } from "@app/survey/question-data/question-map-model";
+import { ProfessionMapModel } from "@app/results/profession-map.model";
+import { PROFESSIONS } from "@app/results/professions-data";
 
 @Component({
   selector: 'app-results', templateUrl: './results.component.html', styleUrls: ['./results.component.less']
@@ -28,6 +30,7 @@ export class ResultsComponent implements OnInit {
   appProgrammerScore: number = 0;
 
   topFiveSkills: SkillScore[] = [];
+  topFifteenSkills: string[] = [];
 
   min1 = SYSTEM_ANALYST_QUESTIONS.length;
   min2 = SOFTWARE_DEVELOPER_QUESTIONS.length;
@@ -61,7 +64,6 @@ export class ResultsComponent implements OnInit {
       }
     }
   };
-
   public radarChartLabels: string[] = [
     'System Analyst',
     'Software Developer',
@@ -70,6 +72,7 @@ export class ResultsComponent implements OnInit {
   ];
   public radarChartType: ChartType = 'radar';
   public radarChartData: ChartData<'radar'> | undefined;
+  private professionsMap: ProfessionMapModel[] = [];
 
   constructor(private surveyService: SurveyService) {
     this.getAvailableScores();
@@ -107,11 +110,16 @@ export class ResultsComponent implements OnInit {
         this.webMultimediaScore = user?.surveyResults?.devTypesScores?.webMultimedia;
         this.appProgrammerScore = user?.surveyResults?.devTypesScores?.appProgrammer;
 
-        console.log(user?.surveyResults?.skills.
-        sort((a: SkillScore, b:SkillScore) => a.value - b.value));
+        this.topFiveSkills = user?.surveyResults?.skills.sort((a: SkillScore, b: SkillScore) => b.value - a.value).slice(0, 5);
+        this.topFifteenSkills = user?.surveyResults?.skills
+          .sort((a: SkillScore, b: SkillScore) => b.value - a.value)
+          .slice(0, 15)
+          .map((elem: SkillScore) => {
+          return elem.name;
+        });
 
-        this.topFiveSkills = user?.surveyResults?.skills.
-        sort((a: SkillScore, b:SkillScore) => b.value - a.value).slice(0, 5);
+        console.log(this.topFifteenSkills);
+        console.log(this.topFiveSkills);
       }
     });
 
@@ -120,16 +128,37 @@ export class ResultsComponent implements OnInit {
   // expressed in percentages
   private computeResults(): void {
     this.results.sysAnalyst =
-      +((this.sysAnalystScore > 0 ? this.sysAnalystScore - this.min1 : 0) / (this.max1 - this.min1) * 100).toFixed(2);
+      +((this.sysAnalystScore > 0 ? this.sysAnalystScore - this.min1 : 0) /
+        (this.max1 - this.min1) * 100).toFixed(2);
     this.results.softwareDev =
-      +((this.softwareDevScore > 0 ? this.softwareDevScore - this.min2 : 0) / (this.max2 - this.min2) * 100).toFixed(2);
+      +((this.softwareDevScore > 0 ? this.softwareDevScore - this.min2 : 0) /
+        (this.max2 - this.min2) * 100).toFixed(2);
     this.results.webMultimedia =
-      +(((this.webMultimediaScore > 0 ? this.webMultimediaScore - this.min3 : 0) / (this.max3 - this.min3) * 100).toFixed(2));
+      +(((this.webMultimediaScore > 0 ? this.webMultimediaScore - this.min3 : 0) /
+        (this.max3 - this.min3) * 100).toFixed(2));
     this.results.appProgrammer =
-      +((this.appProgrammerScore > 0 ? this.appProgrammerScore - this.min4 : 0) / (this.max4 - -this.min4) * 100).toFixed(2);
+      +((this.appProgrammerScore > 0 ? this.appProgrammerScore - this.min4 : 0) /
+        (this.max4 - -this.min4) * 100).toFixed(2);
   }
 
   private processSkills(): void {
+    this.professionsMap = PROFESSIONS.map(elem => {
+      return {
+        name: elem.name,
+        skills: elem.skills,
+        score: 0
+      } as ProfessionMapModel;
+    });
 
+    this.professionsMap.forEach(profession => {
+      this.topFifteenSkills.forEach(topSkill => {
+        if (profession.skills.includes(topSkill)) {
+          profession.score++;
+        }
+      })
+    })
+
+    this.professionsMap.sort((a: ProfessionMapModel, b: ProfessionMapModel) => b.score - a.score);
+    console.log(this.professionsMap);
   }
 }

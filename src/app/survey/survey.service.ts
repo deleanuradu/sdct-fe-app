@@ -8,12 +8,13 @@ import {
 } from "@app/survey/question-data/pre-survey-questions";
 import { QuestionMapModel } from "@app/survey/question-data/question-map-model";
 import {
-  APPLICATION_PROGRAMMER_QUESTIONS, LIST_OF_SKILLS,
+  APPLICATION_PROGRAMMER_QUESTIONS,
+  LIST_OF_SKILLS,
   SOFTWARE_DEVELOPER_QUESTIONS,
   SYSTEM_ANALYST_QUESTIONS,
   WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS
 } from "@app/survey/question-data/survey-questions";
-import { ComplexResultsModel, SkillScore } from "@app/results/complex-results.model";
+import { ComplexResultsModel } from "@app/results/complex-results.model";
 import { DevTypesEnum } from "@app/survey/dev-types.enum";
 
 @Injectable({

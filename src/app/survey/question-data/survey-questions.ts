@@ -125,7 +125,7 @@ export const SYSTEM_ANALYST_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "How skilled are you in IT auditing, ensuring adherence to organizational standards, and executing audits? (1 = Not skilled, 5 = Highly skilled)",
-    weight: 10,
+    weight: 5,
     skills: ["Analyse ICT system", "Ensure adherence to organisational ICT standards", "Execute ICT audits", "Develop audit plan", "Prepare financial auditing reports", "Perform quality audits"],
     profession: ["IT auditor"],
     devType: DevTypesEnum.sysAnalyst
@@ -313,7 +313,7 @@ export const SOFTWARE_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "On a scale of 1 to 5, how well can you design user interfaces for software applications?",
-    weight: 10,
+    weight: 4,
     skills: ["Design user interface", "Design graphics", "Use software libraries", "Use an application-specific interface", "Draw design sketches"],
     profession: ["User interface developer"],
     devType: DevTypesEnum.softwareDev
@@ -469,7 +469,7 @@ export const WEB_AND_MULTIMEDIA_DEVELOPER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "Rate your proficiency (1 to 5) in managing online content and multimedia content for websites.",
-    weight: 10,
+    weight: 5,
     skills: ["Create content title", "Comply with legal regulations", "Apply tools for content development", "Integrate content into output media", "Manage online content", "Provide multimedia content"],
     profession: ["Web content manager"],
     devType: DevTypesEnum.webMultimedia
@@ -601,7 +601,7 @@ export const APPLICATION_PROGRAMMER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "On a scale of 1 to 5, how well can you read and interpret standard blueprints for numerical tool and process control programming?",
-    weight: 10,
+    weight: 4,
     skills: ["Read standard blueprints"],
     profession: ["Numerical tool and process control programmer"],
     devType: DevTypesEnum.appProgrammer
@@ -609,7 +609,7 @@ export const APPLICATION_PROGRAMMER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "Please rate your ability (1 to 5) in applying control process statistical methods for process control programming.",
-    weight: 10,
+    weight: 4,
     skills: ["Apply control process statistical methods"],
     profession: ["Numerical tool and process control programmer"],
     devType: DevTypesEnum.appProgrammer
@@ -617,7 +617,7 @@ export const APPLICATION_PROGRAMMER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "How experienced are you in programming a CNC controller for industrial processes? (1 = Inexperienced, 5 = Highly experienced)",
-    weight: 10,
+    weight: 4,
     skills: ["Program a CNC controller"],
     profession: ["Numerical tool and process control programmer"],
     devType: DevTypesEnum.appProgrammer
@@ -625,7 +625,7 @@ export const APPLICATION_PROGRAMMER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "Rate your familiarity (1 to 5) with using measurement instruments and setting up machine controllers.",
-    weight: 10,
+    weight: 4,
     skills: ["Set up the controller of a machine", "Use measurement instruments"],
     profession: ["Numerical tool and process control programmer"],
     devType: DevTypesEnum.appProgrammer
@@ -633,7 +633,7 @@ export const APPLICATION_PROGRAMMER_QUESTIONS: QuestionObjectModel[] = [
 
   {
     question: "On a scale of 1 to 5, how well can you use CAD software for numerical tool and process control programming?",
-    weight: 10,
+    weight: 4,
     skills: ["Use CAD software"],
     profession: ["Numerical tool and process control programmer"],
     devType: DevTypesEnum.appProgrammer

@@ -61,7 +61,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "User experience analyst",
     skills: [
-      "User experience analyst",
+      "Execute ICT user research activities",
       "Report analysis results",
       "Measure software usability",
       "Conduct qualitative research",
@@ -71,7 +71,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "Cloud engineer",
     skills: [
-      "Cloud engineer",
+      "Design cloud architecture",
       "Automate cloud tasks",
       "Deploy cloud resource",
       "Design database in the cloud",
@@ -81,7 +81,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "Software analyst",
     skills: [
-      "Software analyst",
+      "Execute feasibility study",
       "Interact with users to gather requirements",
       "Define technical requirements",
       "Analyse business processes",
@@ -91,7 +91,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "Software architect",
     skills: [
-      "Software architect",
+      "Create flowchart diagram",
       "Analyse business requirements",
       "Define software architecture",
       "Analyse software specifications",
@@ -103,7 +103,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "Software developer",
     skills: [
-      "Software developer",
+      "Use software design patterns",
       "Interpret technical requirements",
       "Analyse software specifications",
       "Debug software",
@@ -125,7 +125,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "Digital games developer",
     skills: [
-      "Digital games developer",
+      "Use software design patterns",
       "Debug software",
       "Execute analytical mathematical calculations",
       "Use software libraries",
@@ -137,7 +137,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "Search engine optimisation expert",
     skills: [
-      "Search engine optimisation expert",
+      "Conduct search engine optimisation",
       "Apply social media marketing",
       "Perform online data analysis",
       "Enhance website visibility",
@@ -170,7 +170,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "Web developer",
     skills: [
-      "Web developer",
+      "Implement front-end website design",
       "Develop software prototype",
       "Debug software",
       "Collect customer feedback on applications",
@@ -182,7 +182,7 @@ export const PROFESSIONS: ProfessionModel[] = [
   {
     name: "ICT application configurator",
     skills: [
-      "ICT application configurator",
+      "Build business relationships",
       "Migrate existing data",
       "Integrate system components",
       "Use software design patterns",
